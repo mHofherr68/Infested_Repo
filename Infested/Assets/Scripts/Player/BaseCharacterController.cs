@@ -37,7 +37,12 @@ public class BaseCharacterController : MonoBehaviour
     //[SerializeField] private GameObject inventoryPanel; 
 
     // Flag to check, if the player is currently grounded
-    public bool isGrounded;                 
+    public bool isGrounded;
+
+    // Length of the raycast ray
+    [SerializeField] private float raycastDistance;
+    // Layer mask to identify ground objects
+    [SerializeField] private LayerMask groundLayer;
 
     void Start()
     {
@@ -69,10 +74,25 @@ public class BaseCharacterController : MonoBehaviour
     // Called when the player presses the jump button (Spacebarr)
     public void onJump(CallbackContext ctx)
     {
-        
-        // Jump only if grounded
-        if (!isGrounded) return; 
-        rb.AddForce(Vector3.up * jumpStrength);
+        // Camera moves with Player, account for forward/backwards and left/right movement
+        Vector3 movement = new Vector3(movementInput.x, 0f, movementInput.y); // Convert to 3D vector
+        isGrounded = RaycastHitsGround(); // Check if the player is grounded
+        Debug.Log($"Player IsGrounded: {isGrounded}");
+
+        // Check if the player is grounded 
+        if (isGrounded == true) 
+        {
+            // Jump only when grounded
+            rb.AddForce(Vector3.up * jumpStrength);
+            Debug.Log($"Player IsGrounded: {isGrounded}");
+            if (movement.y <= 0) {
+                isGrounded = true; // Check if the player is grounded after jumping
+                Debug.Log($"Player IsGrounded: {isGrounded}");
+            }
+        } else {
+            movement.y = 0; // Ensure no vertical movement when not jumping
+        }
+   
     }
 
     /* Called when "THE PLAYER" presses the spotlight toggle button (F)
@@ -113,7 +133,7 @@ public class BaseCharacterController : MonoBehaviour
             }
         }
     }*/
-
+    
     // Check for ground contact to allow jumping
     private void OnCollisionStay(Collision collision)
     {
@@ -124,6 +144,21 @@ public class BaseCharacterController : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+    } 
+
+    // Raycast method to check if the player is grounded
+    private bool RaycastHitsGround() /*formerly IsGrounded()*/ {
+        RaycastHit hit;
+        Vector3 rayStart = transform.position;
+        Debug.DrawRay(rayStart, Vector3.down * raycastDistance, Color.red); // Visualize raycast
+
+        // Check if the player is grounded using a raycast
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, groundLayer)) {
+            isGrounded = true;
+        } else {
+            isGrounded = false;
+        }
+        return isGrounded;
     }
 
     public void FixedUpdate()
