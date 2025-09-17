@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.VirtualTexturing;
+using static UnityEditor.Rendering.CameraUI;
 using static UnityEngine.InputSystem.InputAction;
 
 public class BaseCharacterController : MonoBehaviour
 {
-    
     // Reference to the PlayerInput component
     private PlayerInput playerInput;         
 
@@ -39,14 +40,14 @@ public class BaseCharacterController : MonoBehaviour
     // Flag to check, if the player is currently grounded
     public bool isGrounded;
 
-    // Length of the raycast ray
+    // Distance for the raycast to check for ground contact
     [SerializeField] private float raycastDistance;
+
     // Layer mask to identify ground objects
     [SerializeField] private LayerMask groundLayer;
 
     void Start()
     {
-
         // Get references to required components
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
@@ -71,28 +72,14 @@ public class BaseCharacterController : MonoBehaviour
         //Debug.Log("Movement Input: " + movementInput);
     }
 
-    // Called when the player presses the jump button (Spacebarr)
+    // Called when the player presses the jump button (Spacebar)
     public void onJump(CallbackContext ctx)
     {
-        // Camera moves with Player, account for forward/backwards and left/right movement
-        Vector3 movement = new Vector3(movementInput.x, 0f, movementInput.y); // Convert to 3D vector
-        isGrounded = RaycastHitsGround(); // Check if the player is grounded
-        Debug.Log($"Player IsGrounded: {isGrounded}");
-
-        // Check if the player is grounded 
-        if (isGrounded == true) 
-        {
-            // Jump only when grounded
+        // When the player is grounded based on the return value of RaycastHitsGround() method...
+        if (isGrounded == true) {
+            // ...allow jumping
             rb.AddForce(Vector3.up * jumpStrength);
-            Debug.Log($"Player IsGrounded: {isGrounded}");
-            if (movement.y <= 0) {
-                isGrounded = true; // Check if the player is grounded after jumping
-                Debug.Log($"Player IsGrounded: {isGrounded}");
-            }
-        } else {
-            movement.y = 0; // Ensure no vertical movement when not jumping
         }
-   
     }
 
     /* Called when "THE PLAYER" presses the spotlight toggle button (F)
@@ -147,23 +134,29 @@ public class BaseCharacterController : MonoBehaviour
     } 
 
     // Raycast method to check if the player is grounded
-    private bool RaycastHitsGround() /*formerly IsGrounded()*/ {
+    private bool RaycastHitsGround() 
+    {
+        // Perform a raycast downwards from the player's position
         RaycastHit hit;
+        // Starting point of the raycast (player's position)
         Vector3 rayStart = transform.position;
-        Debug.DrawRay(rayStart, Vector3.down * raycastDistance, Color.red); // Visualize raycast
+        // Visualize the raycast in the Scene view for debugging
+        Debug.DrawRay(rayStart, Vector3.down * raycastDistance, Color.red); 
 
         // Check if the player is grounded using a raycast
         if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, groundLayer)) {
+            // If the raycast hits the ground layer within the specified distance, the player is grounded
             isGrounded = true;
         } else {
+            // If the raycast does not hit anything, the player is not grounded
             isGrounded = false;
         }
+        // Return the grounded status
         return isGrounded;
     }
 
     public void FixedUpdate()
     {
-
         // Calculate movement direction relative to the camera
         var movementDirection = cameraTransform.right * movementInput.x + cameraTransform.forward * movementInput.y;
 
@@ -172,5 +165,11 @@ public class BaseCharacterController : MonoBehaviour
 
         // Move´s the player based on direction, time, and movement speed
         transform.Translate(movementDirection * Time.deltaTime * actualMovementSpeed);
+        
+        // Call the raycast method to update grounded status
+        RaycastHitsGround();
+
+        // Output grounded status to the console for debugging
+        Debug.Log($"Player IsGrounded: {isGrounded}");
     }
 }
