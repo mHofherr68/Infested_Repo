@@ -120,7 +120,7 @@ public class BaseCharacterController : MonoBehaviour
             }
         }
     }*/
-    
+    /*
     // Check for ground contact to allow jumping
     private void OnCollisionStay(Collision collision)
     {
@@ -131,7 +131,7 @@ public class BaseCharacterController : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
-    } 
+    } */
 
     // Raycast method to check if the player is grounded
     private bool RaycastHitsGround() 
