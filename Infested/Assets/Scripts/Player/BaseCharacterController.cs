@@ -168,8 +168,5 @@ public class BaseCharacterController : MonoBehaviour
         
         // Call the raycast method to update grounded status
         RaycastHitsGround();
-
-        // Output grounded status to the console for debugging
-        Debug.Log($"Player IsGrounded: {isGrounded}");
     }
 }
