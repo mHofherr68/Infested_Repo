@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Create a new item asset from the Unity editor via the "Assets > Create > Inventory > Item" menu
-[CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
+[CreateAssetMenu(fileName = "NewItem", menuName = "Scriptable Objects/Inventory/Item")]
 public class ItemData : ScriptableObject
 {
 
