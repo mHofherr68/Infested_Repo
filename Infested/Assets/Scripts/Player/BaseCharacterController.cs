@@ -35,7 +35,7 @@ public class BaseCharacterController : MonoBehaviour
     [SerializeField] private float jumpStrength;        
 
     // Reference to the UI inventory panel
-    //[SerializeField] private GameObject inventoryPanel; 
+    [SerializeField] private GameObject inventoryPanel; 
 
     // Flag to check, if the player is currently grounded
     public bool isGrounded;
@@ -59,7 +59,7 @@ public class BaseCharacterController : MonoBehaviour
         playerInput.actions["Jump"].canceled += onJump;
         //playerInput.actions["Spotlight"].performed += onSpotlight;
         //playerInput.actions["Focus"].performed += onFocus;
-        //playerInput.actions["Inventory"].performed += onInventory;
+        playerInput.actions["Inventory"].performed += onInventory;
 
         // Get the main camera's transform
         cameraTransform = Camera.main.transform;
@@ -100,7 +100,7 @@ public class BaseCharacterController : MonoBehaviour
         //RealizeIt !!
     } 
 
-    /* Called when "THE PLAYER" presses the inventory Key (I)
+    //Called when "THE PLAYER" presses the inventory Key (I)
     public void onInventory(CallbackContext ctx)
     {
 
@@ -119,7 +119,7 @@ public class BaseCharacterController : MonoBehaviour
                 inventoryPanel.SetActive(!isActive);
             }
         }
-    }*/
+    }
     /*
     // Check for ground contact to allow jumping
     private void OnCollisionStay(Collision collision)
