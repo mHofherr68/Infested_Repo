@@ -4,16 +4,15 @@ using UnityEngine.Rendering.VirtualTexturing;
 using static UnityEditor.Rendering.CameraUI;
 using static UnityEngine.InputSystem.InputAction;
 
-public class BaseCharacterController : MonoBehaviour
-{
+public class BaseCharacterController : MonoBehaviour {
     // Reference to the PlayerInput component
-    private PlayerInput playerInput;         
+    private PlayerInput playerInput;
 
     // Reference to the Rigidbody component
-    private Rigidbody rb;                    
+    private Rigidbody rb;
 
     // Stores input values for horizontal and vertical movement
-    public Vector2 movementInput;           
+    public Vector2 movementInput;
 
     // Reference to the main camera's transform
     private Transform cameraTransform;
@@ -32,7 +31,7 @@ public class BaseCharacterController : MonoBehaviour
     [SerializeField] public float actualMovementSpeed;
 
     // Ability to set the player Force, applied when jumping
-    [SerializeField] private float jumpStrength;        
+    [SerializeField] private float jumpStrength;
 
     // Reference to the UI inventory panel
     //[SerializeField] private GameObject inventoryPanel; 
@@ -46,11 +45,14 @@ public class BaseCharacterController : MonoBehaviour
     // Layer mask to identify ground objects
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private UIPlayerData uiPlayerData;
+
     void Start()
     {
         // Get references to required components
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+        uiPlayerData = GetComponent<UIPlayerData>();
 
         // Bind input actions to corresponding methods
         playerInput.actions["Move"].performed += onMove;
@@ -63,6 +65,8 @@ public class BaseCharacterController : MonoBehaviour
 
         // Get the main camera's transform
         cameraTransform = Camera.main.transform;
+
+        
     }
 
     // Called when "THE PLAYER" pressed (WASD Keys)
@@ -82,6 +86,11 @@ public class BaseCharacterController : MonoBehaviour
         }
     }
 
+    public void onDamage(CallbackContext ctx) 
+    {
+        uiPlayerData.TakeDamage(20);
+        
+    }
     /* Called when "THE PLAYER" presses the spotlight toggle button (F)
     public void onSpotlight(CallbackContext ctx)
     {

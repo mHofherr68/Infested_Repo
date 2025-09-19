@@ -8,6 +8,11 @@ public class HealthBar : MonoBehaviour
 
     public Slider slider;
 
+    void Start()
+    {
+        GameObject.Find("Player.PlayerCam.UICanvas.HealthBar").GetComponent<Slider>();
+    }
+
     public void SetMaxHealth(int health) 
     {
         slider.maxValue = health;
