@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 public class IncreaseRound : MonoBehaviour
 {   // Reference to the RadialFillManager script
-    [SerializeField] RadialFillManager radialFillManager;
+    [SerializeField] private RadialFillManager radialFillManager;
     // Maximum number of rounds
     [SerializeField] int maxRound = 3;
 

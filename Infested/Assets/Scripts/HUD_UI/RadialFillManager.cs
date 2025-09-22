@@ -10,6 +10,8 @@ public class RadialFillManager: MonoBehaviour
     // Duration of the fill animation
     [SerializeField] float fillDuration = 1f;
 
+  
+
     // Variable storing the current fill coroutine, prevents multiple coroutines running at once
     private Coroutine fillCoroutine = null;
 

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.VirtualTexturing;
 using static UnityEditor.Rendering.CameraUI;
@@ -45,13 +47,16 @@ public class BaseCharacterController : MonoBehaviour {
     // Layer mask to identify ground objects
     [SerializeField] private LayerMask groundLayer;
 
-    // [SerializeField] private UIPlayerData uiPlayerData;
+    [SerializeField] private HealthManager healthManager;
+
+    [SerializeField] private float recoilForce = 7f;
 
     void Start()
     {
         // Get references to required components
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+        healthManager = GameObject.Find("Player/PlayerCam/UICanvas").GetComponent<HealthManager>();
 
         // Bind input actions to corresponding methods
         playerInput.actions["Move"].performed += onMove;
@@ -85,7 +90,36 @@ public class BaseCharacterController : MonoBehaviour {
         }
     }
 
-   
+    private void OnCollisionEnter(Collision collision)
+    {   // Check if the player collides with an enemy
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Player Hit by Enemy");
+            // Call the TakeDamage method from the HealthManager script
+            healthManager.TakeDamage(healthManager.damage);
+
+            // Variable holding the direction of recoil 
+            Vector3 recoilDirection = (transform.position - collision.transform.position).normalized;
+
+            // Apply recoil to the Player GameObject
+            rb.AddForce(recoilDirection * recoilForce, ForceMode.Impulse);
+        }
+    }
+    /*
+    // This Code is generated using Github Copilot
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Variable holding the direction of recoil 
+            Vector3 recoilDirection = (transform.position - collision.transform.position).normalized;
+
+            // Apply recoil to the Player GameObject
+            rb.AddForce(recoilDirection * recoilForce, ForceMode.Impulse);
+        }
+    }
+    */
+
     /* Called when "THE PLAYER" presses the spotlight toggle button (F)
     public void onSpotlight(CallbackContext ctx)
     {
