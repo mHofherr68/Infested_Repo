@@ -70,7 +70,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TakeDamage",
+                    "name": "Damage",
                     "type": "Button",
                     "id": "98c23a32-f129-4a5b-9380-f88fa0623a18",
                     "expectedControlType": "",
@@ -208,7 +208,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TakeDamage",
+                    "action": "Damage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

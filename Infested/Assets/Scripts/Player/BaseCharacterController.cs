@@ -45,14 +45,13 @@ public class BaseCharacterController : MonoBehaviour {
     // Layer mask to identify ground objects
     [SerializeField] private LayerMask groundLayer;
 
-    [SerializeField] private UIPlayerData uiPlayerData;
+    // [SerializeField] private UIPlayerData uiPlayerData;
 
     void Start()
     {
         // Get references to required components
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
-        uiPlayerData = GetComponent<UIPlayerData>();
 
         // Bind input actions to corresponding methods
         playerInput.actions["Move"].performed += onMove;
@@ -86,11 +85,7 @@ public class BaseCharacterController : MonoBehaviour {
         }
     }
 
-    public void onDamage(CallbackContext ctx) 
-    {
-        uiPlayerData.TakeDamage(20);
-        
-    }
+   
     /* Called when "THE PLAYER" presses the spotlight toggle button (F)
     public void onSpotlight(CallbackContext ctx)
     {
