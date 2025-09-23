@@ -47,7 +47,7 @@ public class BaseCharacterController : MonoBehaviour {
     // Layer mask to identify ground objects
     [SerializeField] private LayerMask groundLayer;
     // Reference to the HealthBar script for managing player health
-    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private HealthBarManager healthBarManager;
     // Recoil force applied to the player when taking damage
     [SerializeField] private float recoilForce = 7f;
     // Flag to prevent multiple damage instances from a single collision
@@ -58,7 +58,7 @@ public class BaseCharacterController : MonoBehaviour {
         // Get references to required components
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
-        healthBar = GameObject.Find("Player/PlayerCam/UICanvas/HealthBarCircular").GetComponent<HealthBar>();
+        healthBarManager = GameObject.Find("Player/PlayerCam/UICanvas/HealthBarCircular").GetComponent<HealthBarManager>();
 
         // Bind input actions to corresponding methods
         playerInput.actions["Move"].performed += onMove;
@@ -99,7 +99,7 @@ public class BaseCharacterController : MonoBehaviour {
         {
             Debug.Log("Player Hit by Enemy");
             // Call the TakeDamage method from the HealthManager script
-            healthBar.RemoveHealth(healthBar.damage);
+            healthBarManager.RemoveHealth(healthBarManager.damage);
             // Set the flag to true to prevent multiple damage instances
             hasTakenDamage = true;
 
