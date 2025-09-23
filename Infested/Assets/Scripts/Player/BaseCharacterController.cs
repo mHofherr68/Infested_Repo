@@ -46,17 +46,19 @@ public class BaseCharacterController : MonoBehaviour {
 
     // Layer mask to identify ground objects
     [SerializeField] private LayerMask groundLayer;
-
-    [SerializeField] private HealthManager healthManager;
-
+    // Reference to the HealthBar script for managing player health
+    [SerializeField] private HealthBar healthBar;
+    // Recoil force applied to the player when taking damage
     [SerializeField] private float recoilForce = 7f;
+    // Flag to prevent multiple damage instances from a single collision
+    private bool hasTakenDamage = false;
 
     void Start()
     {
         // Get references to required components
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
-        healthManager = GameObject.Find("Player/PlayerCam/UICanvas").GetComponent<HealthManager>();
+        healthBar = GameObject.Find("Player/PlayerCam/UICanvas/HealthBarCircular").GetComponent<HealthBar>();
 
         // Bind input actions to corresponding methods
         playerInput.actions["Move"].performed += onMove;
@@ -90,13 +92,16 @@ public class BaseCharacterController : MonoBehaviour {
         }
     }
 
+    // The folllowing code is written with help from Github Copilot
     private void OnCollisionEnter(Collision collision)
     {   // Check if the player collides with an enemy
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !hasTakenDamage)
         {
             Debug.Log("Player Hit by Enemy");
             // Call the TakeDamage method from the HealthManager script
-            healthManager.TakeDamage(healthManager.damage);
+            healthBar.RemoveHealth(healthBar.damage);
+            // Set the flag to true to prevent multiple damage instances
+            hasTakenDamage = true;
 
             // Variable holding the direction of recoil 
             Vector3 recoilDirection = (transform.position - collision.transform.position).normalized;
@@ -105,20 +110,17 @@ public class BaseCharacterController : MonoBehaviour {
             rb.AddForce(recoilDirection * recoilForce, ForceMode.Impulse);
         }
     }
-    /*
-    // This Code is generated using Github Copilot
+
     private void OnCollisionExit(Collision collision)
-    {
+    {   // Reset the damage flag when the player exits collision with an enemy
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Variable holding the direction of recoil 
-            Vector3 recoilDirection = (transform.position - collision.transform.position).normalized;
-
-            // Apply recoil to the Player GameObject
-            rb.AddForce(recoilDirection * recoilForce, ForceMode.Impulse);
+            hasTakenDamage = false;
         }
     }
-    */
+
+    // AI-assisted code ends here
+  
 
     /* Called when "THE PLAYER" presses the spotlight toggle button (F)
     public void onSpotlight(CallbackContext ctx)
