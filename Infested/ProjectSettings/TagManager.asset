@@ -5,16 +5,17 @@ TagManager:
   serializedVersion: 3
   tags:
   - Item
+  - Projectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
   - Item
-  - Player
   - Water
   - UI
+  - UI
   - Ground Layer
-  - 
+  - Player
   - 
   - 
   - 

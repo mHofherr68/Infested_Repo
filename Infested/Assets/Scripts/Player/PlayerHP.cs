@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class PlayerHP : MonoBehaviour
 {
     [Header("Player Stats")]
     [SerializeField] private int maxHP = 100;

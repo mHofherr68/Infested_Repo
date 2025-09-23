@@ -41,15 +41,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7c0c9b1341101b34890f66a72f0c3202, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 350.92172
+      value: 350.2174
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c0c9b1341101b34890f66a72f0c3202, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.532688
+      value: 31.532698
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c0c9b1341101b34890f66a72f0c3202, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60.612644
+      value: 64.55072
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c0c9b1341101b34890f66a72f0c3202, type: 3}
       propertyPath: m_LocalRotation.w
@@ -188,13 +188,13 @@ MonoBehaviour:
     m_Bits: 4294967295
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 256
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 1.5
   projectile: {fileID: 9083523715867445972, guid: 06380c19fbaf818418ed3c8c7d6fcd71, type: 3}
   mouthPoint: {fileID: 1348106757663283400}
-  sightRange: 11
+  sightRange: 14
   attackRange: 6
   playerInSightRange: 0
   playerInAttackRange: 0
