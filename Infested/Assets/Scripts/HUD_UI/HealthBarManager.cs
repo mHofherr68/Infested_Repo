@@ -41,12 +41,14 @@ public class HealthBarManager : MonoBehaviour
         {
             // Set current health to zero and log "Game Over"
             currentHealth = 0;
-            Debug.Log("Game Over");
+            // Update the health bar UI
             UpdateHealth();
+            // Return true to indicate the player has died
             return true;
             
         }
         UpdateHealth();
+        // Return false to indicate the player is still alive
         return false;
     }
 

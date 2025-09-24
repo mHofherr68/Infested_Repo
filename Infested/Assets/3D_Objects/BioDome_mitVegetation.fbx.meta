@@ -1,89 +1,9 @@
 fileFormatVersion: 2
-guid: 36a129a59799f714a8771a2ca22b40c8
+guid: 604b2df3335abb14d8fdea338a3ea7b4
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Boden
-    second: {fileID: 2100000, guid: 45f50e33ad1c6db4aa050dbae6b8d656, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Default.001
-    second: {fileID: 2100000, guid: 1ad35c0e61b821f4681244655c085d07, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Default_1.001
-    second: {fileID: 2100000, guid: 3e05f3e26d3e57d4e874c7769e2dc9c7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Default_2.001
-    second: {fileID: 2100000, guid: 8be88361690ac96488cc4b95c435827e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Flat white_1.001
-    second: {fileID: 2100000, guid: ceb5d3c4710ae674781c29be5ab13aef, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glas_Transparent
-    second: {fileID: 2100000, guid: 4a149bc2a90b14a40b58f001362392fc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Leaves01
-    second: {fileID: 2100000, guid: d8f942ee3842e104d8ce570ba6cb7aa7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: "MetallicWei\xDF"
-    second: {fileID: 2100000, guid: ec55f21e7dcf355488209a3698f6b6bb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Trunk.002
-    second: {fileID: 2100000, guid: 2e1608d2ca5bbae4695e97e9696cb309, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Yellow.001
-    second: {fileID: 2100000, guid: 4f22758a6a6eda746aaacf16ef5f5784, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Yucca_Leaf.001
-    second: {fileID: 2100000, guid: 3153dc74987aed24e9c94ae30fd0e308, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: BioDome_Boden_BaseColor
-    second: {fileID: 2800000, guid: bd6c01cbbbb61c949b5cd6fe35331e99, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: BioDome_Boden_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: d420a1f63b881cf4c939d2b663f32ac1, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: "BioDome_MetallicWei\xDF_BaseColor"
-    second: {fileID: 2800000, guid: 8b7d8b7e384e6f34089faa465bf475d0, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: SM_Trunk01_WithMoss_normal
-    second: {fileID: 2800000, guid: a2c835204ce9a004e9eb4566f7929e9d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: T_SM_Trunk01_WithMoss_A
-    second: {fileID: 2800000, guid: 465f177d18b1d86459fb0452c8bd7b79, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
