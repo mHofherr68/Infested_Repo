@@ -15,7 +15,7 @@ public class OxygenBarManager : MonoBehaviour
     public float depletionPercentage = 1f; // Percentage of depletion per interval
 
 
-    [SerializeField] private Slider slider;
+    // [SerializeField] private Slider slider;
     // public Gradient gradient;
     [SerializeField] private Image oxygenBarFilling;
 
@@ -32,6 +32,7 @@ public class OxygenBarManager : MonoBehaviour
         }
     }
 
+    /*
     public void SetMaxOxygen(int oxygen) 
     {
         slider.maxValue = oxygen;
@@ -46,6 +47,7 @@ public class OxygenBarManager : MonoBehaviour
 
         // oxygenBarFilling.color = gradient.Evaluate(slider.normalizedValue);
     }
+    */
 
     public void AddOxygen(float oxygen)
     {
