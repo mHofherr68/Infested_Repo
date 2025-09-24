@@ -68,15 +68,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Damage",
-                    "type": "Button",
-                    "id": "98c23a32-f129-4a5b-9380-f88fa0623a18",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -200,15 +191,32 @@
                     "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "7d9d56ad-5d47-4075-a2d0-d202695ce1fa",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "609c50de-8e50-4944-b13b-146ca749540c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "1b06510b-7e9e-42e1-93b0-06db30975ded",
-                    "path": "<Keyboard>/t",
+                    "id": "cd29723b-0483-40f7-b9f6-99acabd500ce",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Damage",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
