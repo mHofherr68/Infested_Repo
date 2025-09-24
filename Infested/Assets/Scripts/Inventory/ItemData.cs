@@ -5,12 +5,16 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
 
+    [Header("Item Data Parameter")]
+
+    [Space(16)]
+
     // The display name of the item
     public string itemName;
 
     // A unique identifier for the item
     public int itemID;
 
-    // Optional: an icon for the item to be used in the UI
-    // public Sprite icon;
+    // Item value
+    public float itemValue;    
 }

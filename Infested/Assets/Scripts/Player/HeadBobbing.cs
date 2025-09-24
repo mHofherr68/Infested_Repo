@@ -3,9 +3,6 @@ using UnityEngine;
 public class HeadBob : MonoBehaviour
 {
     [Header("Head Bobbing Settings")]
-
-    [Space(16)]
-
     public float bobFrequency = 1.5f;
     public float bobHorizontalAmount = 0.05f;
     public float bobVerticalAmount = 0.05f;
@@ -33,12 +30,14 @@ public class HeadBob : MonoBehaviour
 
         if (isMoving)
         {
-            timer += Time.deltaTime * bobFrequency;
+            // Geschwindigkeit berücksichtigen
+            float speedFactor = (controller.actualMovementSpeed + controller.externalSpeedOffset) / controller.actualMovementSpeed;
+
+            timer += Time.deltaTime * bobFrequency * speedFactor;
 
             float bobX = Mathf.Sin(timer) * bobHorizontalAmount;
             float bobY = Mathf.Cos(timer * 2) * bobVerticalAmount;
 
-            // Headbob entlang der lokalen Achsen (immer gleich sichtbar)
             Vector3 horizontalOffset = transform.right * bobX;
             Vector3 verticalOffset = transform.up * bobY;
 

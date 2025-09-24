@@ -4,12 +4,15 @@ using System.Text;
 
 public class InventoryUI : MonoBehaviour
 {
+    [Header("Inventory Settings")]
+
+    [Space(16)]
 
     // Reference to the player's inventory
-    public Inventory inventory;
+    [SerializeField] public Inventory inventoryReference;
 
     // Reference to the TextMeshPro UI element that displays the inventory Text
-    public TMP_Text inventoryText;
+    [SerializeField] public TMP_Text inventoryList;
 
     void Update()
     {
@@ -22,7 +25,7 @@ public class InventoryUI : MonoBehaviour
     {
 
         // Exit early if either the inventory or the UI text reference is missing
-        if (inventory == null || inventoryText == null)
+        if (inventoryReference == null || inventoryList == null)
             return;
 
         // Use a StringBuilder to build the inventory string
@@ -30,12 +33,12 @@ public class InventoryUI : MonoBehaviour
         sb.AppendLine();
 
         // Add each item's name to the display string
-        foreach (var item in inventory.items)
+        foreach (var item in inventoryReference.items)
         {
             sb.AppendLine(item.itemName);
         }
 
         // Assign the built string to the UI text component
-        inventoryText.text = sb.ToString();
+        inventoryList.text = sb.ToString();
     }
 }

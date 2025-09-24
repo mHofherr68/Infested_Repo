@@ -9,12 +9,16 @@ public class PickUpController : MonoBehaviour
     
     // Reference to the player's inventory
     private Inventory inventory;
-    
-    // Holds the selected item at Player, (e.g., flashlight) when is picked up
+
+    // Holds the selected item at Player, (e.g., flashlight, Weapon) when is picked up
     // public GameObject selectPlayerItem; 
     
-    // selected UI Panel, shown when the player is near an item
-    public GameObject selectPanel;
+    [Header("UI Text Settings")]
+
+    [Space(16)]
+
+    // selected UI Text in "GameTextPanel", shown when the player is near an item
+    public GameObject selectUiText;
 
     // Stores the collider of the item currently in range
     private Collider currentItemCollider;     
@@ -22,8 +26,8 @@ public class PickUpController : MonoBehaviour
     void Start()
     {
 
-        // Hide the UI Panel initially
-        selectPanel.SetActive(false);
+        // Hide the UI Text, in GameObject selectUiText, initially
+        selectUiText.SetActive(false);
 
         // Get references to PlayerInput and Inventory components
         playerInput = GetComponent<PlayerInput>();
@@ -46,14 +50,14 @@ public class PickUpController : MonoBehaviour
                 // Add the item data to the inventory
                 inventory.AddItem(item.data);
 
-                // If the item is a flashlight, activate the player flashlight object
+                // If the item is a Weapon, activate the player Weapon object
                /* if (item.data.itemName == "Flashlight")
                 {
                     selectPlayerItem.SetActive(true);
                 } */
 
                 // Hide the interaction UI Panel
-                selectPanel.SetActive(false);
+                selectUiText.SetActive(false);
 
                 // Destroy the picked-up item in the scene
                 Destroy(currentItemCollider.gameObject);
@@ -73,7 +77,7 @@ public class PickUpController : MonoBehaviour
             currentItemCollider = other;
 
             // Show the interaction UI Panel
-            selectPanel.SetActive(true);
+            selectUiText.SetActive(true);
         }
     }
 
@@ -85,7 +89,7 @@ public class PickUpController : MonoBehaviour
         {
             // Clear the item reference and hide the interaction UI Panel
             currentItemCollider = null;
-            selectPanel.SetActive(false);
+            selectUiText.SetActive(false);
         }
     }
 }
