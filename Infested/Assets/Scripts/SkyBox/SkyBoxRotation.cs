@@ -1,23 +1,24 @@
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class SkyBoxRotation : MonoBehaviour
 {
-
     [Header("Skybox Settings")]
-
     [Space(16)]
 
-    [SerializeField] float rotateSpeed = 0.2f;
+    // Set the speed at which the skybox rotates.
+    [SerializeField] private float rotateSpeed = 0.2f;
 
-    public float RotateSpeed                                                    // for later use !
+    // Public property for accessing and modifying the rotation speed at runtime.
+    public float RotateSpeed
     {
         get => rotateSpeed;
         set => rotateSpeed = value;
     }
 
-    void Update()
+    private void Update()
     {
+        // Continuously rotate the skybox over time.
+        // "_Rotation" is a shader property used by Unity's default skybox material.
         RenderSettings.skybox.SetFloat("_Rotation", Time.time * RotateSpeed);
     }
 }

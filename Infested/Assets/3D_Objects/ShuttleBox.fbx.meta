@@ -1,29 +1,9 @@
 fileFormatVersion: 2
-guid: 00b33fc448cd0d04eb4878a2bb282e69
+guid: f8f3bce67e866b346890e8d1cfe9f05e
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 51fe0558f70faf84a83e5f114aed85cc, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: space-crate1-albedo
-    second: {fileID: 2800000, guid: 03226358d7d9a5444ad3490344f41219, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: space-crate1-metallic
-    second: {fileID: 2800000, guid: f0b15d74a7e982d43a25ba59ede5b737, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: space-crate1-normal-ogl
-    second: {fileID: 2800000, guid: 83c09a2c9bdf55f4cb15634fbd52bd8b, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

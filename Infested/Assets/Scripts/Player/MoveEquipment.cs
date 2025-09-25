@@ -3,7 +3,7 @@ using UnityEngine;
 public class MoveEquipment : MonoBehaviour
 {
 
-    // Reference to the player's camera, used to move aligned Object (e.g. Flashlight)
+    // Reference to the player's camera, used to move aligned Object (e.g. Flashlight, Weapon)
     [SerializeField] private Transform playerCam;
 
     // Positional offset of the equipment relative to the camera

@@ -3,7 +3,6 @@
 public class PlayerCam : MonoBehaviour
 {
     [Header("Player Camera Settings")]
-
     [Space(16)]
 
     // Reference to the player's orientation (used for movement direction)
@@ -18,15 +17,6 @@ public class PlayerCam : MonoBehaviour
     [SerializeField] private float clampUp = -62f;
 
     [SerializeField] private float clampDown = 45f;
-
-        // Optional FOV Zoom
-
-        /* -> [SerializeField] private float focusedFOV = 30f;
-        [SerializeField] private float normalFOV = 60f;
-        [SerializeField] private float fovSmoothSpeed = 6f;*/
-
-        // -> [SerializeField] private Vector3 cameraOffset = new Vector3 (0f, 0f, 0f);
-        // -> public float fieldOfView;
 
     // Stores the current look input from the mouse
     private Vector2 lookInput;   
@@ -49,13 +39,6 @@ public class PlayerCam : MonoBehaviour
         // Assign mouse movement to look input
         controls.Player.LookAround.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
         controls.Player.LookAround.canceled += ctx => lookInput = Vector2.zero;
-
-            /* -> Optional FOV zoom
-
-            Right Mousekey pressed → onFocus, FOV (10)                                  
-            -> controls.Player.Focus.performed += ctx => targetFOV = focusedFOV;
-            Right mouse button released → back to normal FOV (50)
-            -> controls.Player.Focus.canceled += ctx => targetFOV = normalFOV*/
     }
 
 
@@ -80,11 +63,6 @@ public class PlayerCam : MonoBehaviour
         // Initialize rotation values
         xRotation = 0f;
         yRotation = 0f;
-
-            /* -> Optional FOV zoom
-         
-            ->targetFOV = normalFOV;
-            PlayerCamera.fieldOfView = normalFOV;*/
     }
 
     private void Update()
@@ -106,8 +84,5 @@ public class PlayerCam : MonoBehaviour
 
         // Apply horizontal rotation to orientation object (for player movement)
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-
-            /* -> Optional FOV zoom
-            -> PlayerCamera.fieldOfView = Mathf.Lerp(PlayerCamera.fieldOfView, targetFOV, Time.deltaTime * fovSmoothSpeed);*/
     }
 }
