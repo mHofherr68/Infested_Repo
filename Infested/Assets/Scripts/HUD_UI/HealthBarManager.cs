@@ -54,6 +54,7 @@ public class HealthBarManager : MonoBehaviour
         UpdateCircularHandle();
     }
 
+    // Method to set the current health on the slider
     public void SetHealth(int health)
     {
         // Set the slider's value to the current health
