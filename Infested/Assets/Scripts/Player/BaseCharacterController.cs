@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-<<<<<<< HEAD
 public class BaseCharacterController : MonoBehaviour
 {
     // Set externally by "PlayAudioTrigger.cs" to temporarily modify the player's movement speed.
@@ -18,17 +17,6 @@ public class BaseCharacterController : MonoBehaviour
 
     // Current movement input vector (X = horizontal, Y = vertical).
     [HideInInspector] public Vector2 movementInput;
-=======
-public class BaseCharacterController : MonoBehaviour {
-    // Reference to the PlayerInput component
-    private PlayerInput playerInput;
-
-    // Reference to the Rigidbody component
-    private Rigidbody rb;
-
-    // Stores input values for horizontal and vertical movement
-    public Vector2 movementInput;
->>>>>>> HUD-UI
 
     private Transform cameraTransform;
 
@@ -46,30 +34,35 @@ public class BaseCharacterController : MonoBehaviour {
     // Reference to the inventory panel UI.
     [SerializeField] private GameObject selectPanel;
 
-<<<<<<< HEAD
+
     [Header("Player Ground Detection")]
     [Space(16)]
     // True if the player is standing on the ground.
-=======
-    // Ability to set the player Force, applied when jumping
-    [SerializeField] private float jumpStrength;
 
-    // Reference to the UI inventory panel
-    //[SerializeField] private GameObject inventoryPanel; 
 
     // Flag to check, if the player is currently grounded
->>>>>>> HUD-UI
+
     public bool isGrounded;
     // Distance for the ground detection ray.
     [SerializeField] private float raycastDistance;
     // Which layers are considered as ground.
     [SerializeField] private LayerMask groundLayer;
+    
+
     // Reference to the HealthBar script for managing player health
     [SerializeField] private HealthBarManager healthBarManager;
     // Recoil force applied to the player when taking damage
     [SerializeField] private float recoilForce = 7f;
     // Flag to prevent multiple damage instances from a single collision
     private bool hasTakenDamage = false;
+
+
+    // Reference to the UI inventory panel
+    //[SerializeField] private GameObject inventoryPanel; 
+    //[SerializeField] private OxygenManager oxygenManager;
+    //[SerializeField] private AmmoManager ammomanager;
+
+
 
     [Header("Collision Stop Settings")]
     [Space(16)]
@@ -97,8 +90,6 @@ public class BaseCharacterController : MonoBehaviour {
         playerInput.actions["Inventory"].performed += onInventory;
 
         cameraTransform = Camera.main.transform;
-
-        
     }
 
     /// <summary>
@@ -119,13 +110,21 @@ public class BaseCharacterController : MonoBehaviour {
     /// </summary>
     public void onJump(CallbackContext ctx)
     {
-        if (!ctx.performed) return;
-        if (inputLocked) return;
-
-<<<<<<< HEAD
         if (isGrounded)
-=======
-    // The folllowing code is written with help from Github Copilot
+        {
+            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+        }
+            
+        // Clamp jump velocity to avoid excessive upward force
+        Vector3 vel = rb.linearVelocity;
+        if (vel.y > maxJumpVelocity)
+        {
+            vel.y = maxJumpVelocity;
+            rb.linearVelocity = vel;
+        }
+    }
+
+  
     private void OnCollisionEnter(Collision collision)
     {   // Check if the player collides with an enemy
         if (collision.gameObject.CompareTag("Enemy") && !hasTakenDamage)
@@ -149,29 +148,6 @@ public class BaseCharacterController : MonoBehaviour {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             hasTakenDamage = false;
-        }
-    }
-
-    // AI-assisted code ends here
-  
-
-    /* Called when "THE PLAYER" presses the spotlight toggle button (F)
-    public void onSpotlight(CallbackContext ctx)
-    {
-
-        // Toggles Spotlight on/off
-        if (ItemAtPlayer.activeSelf)
->>>>>>> HUD-UI
-        {
-            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
-
-            // Clamp jump velocity to avoid excessive upward force
-            Vector3 vel = rb.linearVelocity;
-            if (vel.y > maxJumpVelocity)
-            {
-                vel.y = maxJumpVelocity;
-                rb.linearVelocity = vel;
-            }
         }
     }
 
@@ -216,10 +192,14 @@ public class BaseCharacterController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (inputLocked) movementInput = Vector2.zero;
+        // if (inputLocked) movementInput = Vector2.zero;
 
+        if (cameraTransform = null)
+        {
+            cameraTransform = Camera.main.transform;
+        }
         // Movement is relative to camera orientation
-        Vector3 movementDirection = cameraTransform.right * movementInput.x + cameraTransform.forward * movementInput.y;
+        Vector3 movementDirection = (cameraTransform.right * movementInput.x) + cameraTransform.forward * movementInput.y;
         movementDirection = Vector3.ProjectOnPlane(movementDirection, Vector3.up);
 
         // Check for walls in movement direction
