@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class OxygenBarManager : MonoBehaviour
 {
-    public float maxOxygen= 100; // Maximum oxygen value
+    // Maximum oxygen value
+    public float maxOxygen= 100; 
 
     public float currentOxygen; // Current oxygen value
 
