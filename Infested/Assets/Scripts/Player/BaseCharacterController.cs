@@ -1,172 +1,175 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.VirtualTexturing;
-using static UnityEditor.Rendering.CameraUI;
 using static UnityEngine.InputSystem.InputAction;
 
 public class BaseCharacterController : MonoBehaviour
 {
-    // Reference to the PlayerInput component
-    private PlayerInput playerInput;         
+    // Set externally by "PlayAudioTrigger.cs" to temporarily modify the player's movement speed.
+    [HideInInspector] public float externalSpeedOffset = 0f;
 
-    // Reference to the Rigidbody component
-    private Rigidbody rb;                    
+    // Set externally by "PlayAudioTrigger.cs" to lock player input (e.g., during cutscenes or interactions).
+    [HideInInspector] public bool inputLocked = false;
 
-    // Stores input values for horizontal and vertical movement
-    public Vector2 movementInput;           
+    private PlayerInput playerInput;
+    private Rigidbody rb;
 
-    // Reference to the main camera's transform
+    // Current movement input vector (X = horizontal, Y = vertical).
+    [HideInInspector] public Vector2 movementInput;
+
     private Transform cameraTransform;
 
-    // Reference to an selected item the player is using (e.g. Flashlight)
-    // public GameObject ItemAtPlayer;          
-
-    // Spotlight GameObject for Flashlight, to toggle on/off
-    // public GameObject SpotLight;
-
     [Header("Player Movement Settings")]
-
     [Space(16)]
+    // Base player movement speed.
+    public float actualMovementSpeed = 8f;
+    // Force applied when jumping.
+    private float jumpStrength = 8f;
+    // Maximum vertical jump velocity.
+    private float maxJumpVelocity = 10f;
 
-    // Ability to set the player Movement Speed
-    [SerializeField] public float actualMovementSpeed;
+    [Header("UI Settings -> Inventory")]
+    [Space(16)]
+    // Reference to the inventory panel UI.
+    [SerializeField] private GameObject selectPanel;
 
-    // Ability to set the player Force, applied when jumping
-    [SerializeField] private float jumpStrength;        
-
-    // Reference to the UI inventory panel
-    [SerializeField] private GameObject inventoryPanel; 
-
-    // Flag to check, if the player is currently grounded
+    [Header("Player Ground Detection")]
+    [Space(16)]
+    // True if the player is standing on the ground.
     public bool isGrounded;
-
-    // Distance for the raycast to check for ground contact
+    // Distance for the ground detection ray.
     [SerializeField] private float raycastDistance;
-
-    // Layer mask to identify ground objects
+    // Which layers are considered as ground.
     [SerializeField] private LayerMask groundLayer;
 
-    void Start()
+    [Header("Collision Stop Settings")]
+    [Space(16)]
+    // Distance to check for walls in front of the player.
+    [SerializeField] private float collisionCheckDistance = 0.5f;
+    // Which layers are considered as walls.
+    [SerializeField] private LayerMask wallLayer;
+
+    private void Awake()
     {
-        // Get references to required components
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
 
-        // Bind input actions to corresponding methods
+        // Subscribe to input action callbacks
         playerInput.actions["Move"].performed += onMove;
         playerInput.actions["Move"].canceled += onMove;
         playerInput.actions["Jump"].performed += onJump;
         playerInput.actions["Jump"].canceled += onJump;
-        //playerInput.actions["Spotlight"].performed += onSpotlight;
-        //playerInput.actions["Focus"].performed += onFocus;
         playerInput.actions["Inventory"].performed += onInventory;
 
-        // Get the main camera's transform
         cameraTransform = Camera.main.transform;
     }
 
-    // Called when "THE PLAYER" pressed (WASD Keys)
+    /// <summary>
+    /// Handles player movement input.
+    /// </summary>
     public void onMove(CallbackContext ctx)
     {
+        if (inputLocked)
+        {
+            movementInput = Vector2.zero;
+            return;
+        }
         movementInput = ctx.ReadValue<Vector2>();
-        //Debug.Log("Movement Input: " + movementInput);
     }
 
-    // Called when the player presses the jump button (Spacebar)
+    /// <summary>
+    /// Handles jump input. Adds upward force if grounded.
+    /// </summary>
     public void onJump(CallbackContext ctx)
     {
-        // When the player is grounded based on the return value of RaycastHitsGround() method...
-        if (isGrounded == true) {
-            // ...allow jumping
-            rb.AddForce(Vector3.up * jumpStrength);
-        }
-    }
+        if (!ctx.performed) return;
+        if (inputLocked) return;
 
-    /* Called when "THE PLAYER" presses the spotlight toggle button (F)
-    public void onSpotlight(CallbackContext ctx)
-    {
-
-        // Toggles Spotlight on/off
-        if (ItemAtPlayer.activeSelf)
+        if (isGrounded)
         {
-            SpotLight.SetActive(!SpotLight.activeSelf);
-        }
-    }*/
+            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
 
-    // -> Optional FOV zoom
-    public void onFocus(CallbackContext ctx)
-    {
-        //Debug.Log("RMouse");
-        //RealizeIt !!
-    } 
-
-    //Called when "THE PLAYER" presses the inventory Key (I)
-    public void onInventory(CallbackContext ctx)
-    {
-
-        // Check if the input action was just performed (e.g., key was pressed)
-        if (ctx.performed)
-        {
-
-            // Make sure the inventory panel reference is assigned
-            if (inventoryPanel != null)
+            // Clamp jump velocity to avoid excessive upward force
+            Vector3 vel = rb.linearVelocity;
+            if (vel.y > maxJumpVelocity)
             {
-
-                // Check whether the inventory panel is currently active
-                bool isActive = inventoryPanel.activeSelf;
-
-                // Toggles the inventory UI Panel
-                inventoryPanel.SetActive(!isActive);
+                vel.y = maxJumpVelocity;
+                rb.linearVelocity = vel;
             }
         }
     }
-    /*
-    // Check for ground contact to allow jumping
-    private void OnCollisionStay(Collision collision)
+
+    /// <summary>
+    /// Handles inventory input. Toggles the inventory UI panel.
+    /// </summary>
+    public void onInventory(CallbackContext ctx)
     {
-        isGrounded = true;
+        if (ctx.performed && selectPanel != null)
+        {
+            selectPanel.SetActive(!selectPanel.activeSelf);
+        }
     }
 
-    // Called when the player leaves contact with a collider
-    private void OnCollisionExit(Collision collision)
+    /// <summary>
+    /// Casts a ray downward to check if the player is grounded.
+    /// </summary>
+    private bool RaycastHitsGround()
     {
-        isGrounded = false;
-    } */
-
-    // Raycast method to check if the player is grounded
-    private bool RaycastHitsGround() 
-    {
-        // Perform a raycast downwards from the player's position
         RaycastHit hit;
-        // Starting point of the raycast (player's position)
-        Vector3 rayStart = transform.position;
-        // Visualize the raycast in the Scene view for debugging
-        Debug.DrawRay(rayStart, Vector3.down * raycastDistance, Color.red); 
+        Debug.DrawRay(transform.position, Vector3.down * raycastDistance, Color.red);
 
-        // Check if the player is grounded using a raycast
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, groundLayer)) {
-            // If the raycast hits the ground layer within the specified distance, the player is grounded
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, groundLayer))
+        {
             isGrounded = true;
-        } else {
-            // If the raycast does not hit anything, the player is not grounded
+        }
+        else
+        {
             isGrounded = false;
         }
-        // Return the grounded status
         return isGrounded;
     }
 
-    public void FixedUpdate()
+    /// <summary>
+    /// Refreshes movement input manually (used when input may need to be re-polled).
+    /// </summary>
+    public void RefreshInput()
     {
-        // Calculate movement direction relative to the camera
-        var movementDirection = cameraTransform.right * movementInput.x + cameraTransform.forward * movementInput.y;
+        if (inputLocked || playerInput == null) return;
+        movementInput = playerInput.actions["Move"].ReadValue<Vector2>();
+    }
 
-        // Ensure movement is restricted to the horizontal plane
-        movementDirection = Vector3.ProjectOnPlane (movementDirection, Vector3.up).normalized;
+    private void FixedUpdate()
+    {
+        if (inputLocked) movementInput = Vector2.zero;
 
-        // Move´s the player based on direction, time, and movement speed
-        transform.Translate(movementDirection * Time.deltaTime * actualMovementSpeed);
-        
-        // Call the raycast method to update grounded status
+        // Movement is relative to camera orientation
+        Vector3 movementDirection = cameraTransform.right * movementInput.x + cameraTransform.forward * movementInput.y;
+        movementDirection = Vector3.ProjectOnPlane(movementDirection, Vector3.up);
+
+        // Check for walls in movement direction
+        if (movementInput.magnitude > 0.01f)
+        {
+            float radius = 0.3f;
+            float height = 2f;
+            Vector3 point1 = transform.position + Vector3.up * radius;
+            Vector3 point2 = transform.position + Vector3.up * (height - radius);
+
+            if (Physics.CapsuleCast(point1, point2, radius, movementDirection.normalized, out RaycastHit hit, collisionCheckDistance, wallLayer))
+            {
+                Debug.Log("Wall hit: " + hit.collider.name);
+                movementDirection = Vector3.zero;
+                movementInput = Vector2.zero;
+            }
+        }
+
+        // Apply movement
+        transform.Translate(movementDirection * Time.deltaTime * (actualMovementSpeed + externalSpeedOffset));
+
+        // Update grounded state
         RaycastHitsGround();
     }
 }

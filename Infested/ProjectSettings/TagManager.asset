@@ -15,7 +15,12 @@ TagManager:
   - UI
   - UI
   - Ground Layer
+<<<<<<< HEAD
   - Player
+=======
+  - Borders
+  - Wall Layer
+>>>>>>> StoryPartOne
   - 
   - 
   - 
