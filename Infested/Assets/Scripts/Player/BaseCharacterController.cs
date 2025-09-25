@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
+<<<<<<< HEAD
 public class BaseCharacterController : MonoBehaviour
 {
     // Set externally by "PlayAudioTrigger.cs" to temporarily modify the player's movement speed.
@@ -15,6 +18,17 @@ public class BaseCharacterController : MonoBehaviour
 
     // Current movement input vector (X = horizontal, Y = vertical).
     [HideInInspector] public Vector2 movementInput;
+=======
+public class BaseCharacterController : MonoBehaviour {
+    // Reference to the PlayerInput component
+    private PlayerInput playerInput;
+
+    // Reference to the Rigidbody component
+    private Rigidbody rb;
+
+    // Stores input values for horizontal and vertical movement
+    public Vector2 movementInput;
+>>>>>>> HUD-UI
 
     private Transform cameraTransform;
 
@@ -32,14 +46,30 @@ public class BaseCharacterController : MonoBehaviour
     // Reference to the inventory panel UI.
     [SerializeField] private GameObject selectPanel;
 
+<<<<<<< HEAD
     [Header("Player Ground Detection")]
     [Space(16)]
     // True if the player is standing on the ground.
+=======
+    // Ability to set the player Force, applied when jumping
+    [SerializeField] private float jumpStrength;
+
+    // Reference to the UI inventory panel
+    //[SerializeField] private GameObject inventoryPanel; 
+
+    // Flag to check, if the player is currently grounded
+>>>>>>> HUD-UI
     public bool isGrounded;
     // Distance for the ground detection ray.
     [SerializeField] private float raycastDistance;
     // Which layers are considered as ground.
     [SerializeField] private LayerMask groundLayer;
+    // Reference to the HealthBar script for managing player health
+    [SerializeField] private HealthBarManager healthBarManager;
+    // Recoil force applied to the player when taking damage
+    [SerializeField] private float recoilForce = 7f;
+    // Flag to prevent multiple damage instances from a single collision
+    private bool hasTakenDamage = false;
 
     [Header("Collision Stop Settings")]
     [Space(16)]
@@ -57,6 +87,7 @@ public class BaseCharacterController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+        healthBarManager = GameObject.Find("Player/PlayerCam/UICanvas/HealthBarCircular").GetComponent<HealthBarManager>();
 
         // Subscribe to input action callbacks
         playerInput.actions["Move"].performed += onMove;
@@ -66,6 +97,8 @@ public class BaseCharacterController : MonoBehaviour
         playerInput.actions["Inventory"].performed += onInventory;
 
         cameraTransform = Camera.main.transform;
+
+        
     }
 
     /// <summary>
@@ -89,7 +122,46 @@ public class BaseCharacterController : MonoBehaviour
         if (!ctx.performed) return;
         if (inputLocked) return;
 
+<<<<<<< HEAD
         if (isGrounded)
+=======
+    // The folllowing code is written with help from Github Copilot
+    private void OnCollisionEnter(Collision collision)
+    {   // Check if the player collides with an enemy
+        if (collision.gameObject.CompareTag("Enemy") && !hasTakenDamage)
+        {
+            Debug.Log("Player Hit by Enemy");
+            // Call the TakeDamage method from the HealthManager script
+            healthBarManager.RemoveHealth(healthBarManager.damage);
+            // Set the flag to true to prevent multiple damage instances
+            hasTakenDamage = true;
+
+            // Variable holding the direction of recoil 
+            Vector3 recoilDirection = (transform.position - collision.transform.position).normalized;
+
+            // Apply recoil to the Player GameObject
+            rb.AddForce(recoilDirection * recoilForce, ForceMode.Impulse);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {   // Reset the damage flag when the player exits collision with an enemy
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            hasTakenDamage = false;
+        }
+    }
+
+    // AI-assisted code ends here
+  
+
+    /* Called when "THE PLAYER" presses the spotlight toggle button (F)
+    public void onSpotlight(CallbackContext ctx)
+    {
+
+        // Toggles Spotlight on/off
+        if (ItemAtPlayer.activeSelf)
+>>>>>>> HUD-UI
         {
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
 
