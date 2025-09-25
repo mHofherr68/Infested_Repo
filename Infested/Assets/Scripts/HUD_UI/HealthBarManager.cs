@@ -11,12 +11,16 @@ public class HealthBarManager : MonoBehaviour
     [SerializeField] private Image healthbarFilling;
 
     [SerializeField] private Slider slider;
-    
-    // Circular movement properties
-    [SerializeField] private RectTransform circularCenter; // Center point of the circular path
-    [SerializeField] private float circularRadius = 180f;   // Radius of the circular path
-    [SerializeField] private float startAngle = 100f;       // Starting angle (90° = top, 0° = right)
-    [SerializeField] private float totalAngle = 360f;      // Total angle range (270° for 3/4 circle)
+
+    // ----- Circular movement properties ----- //
+    // Center point of the circular path
+    [SerializeField] private RectTransform circularCenter;
+    // Radius of the circular path
+    [SerializeField] private float circularRadius = 180f;
+    // Starting angle (90° = top, 0° = right)
+    [SerializeField] private float startAngle = 100f;
+    // Total angle range 360° 
+    [SerializeField] private float totalAngle = 360f;      
 
 
 
@@ -115,8 +119,10 @@ public class HealthBarManager : MonoBehaviour
         UpdateCircularHandle();
     }
 
+    // Method to update the handle position along a circular path based on current health
     private void UpdateCircularHandle()
     {
+        // Ensure the handleRect and circularCenter are assigned
         if (slider.handleRect != null && circularCenter != null)
         {
             // Calculate the normalized position (0 to 1) based on slider value
