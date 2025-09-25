@@ -23,9 +23,9 @@ public class BaseCharacterController : MonoBehaviour
     // Base player movement speed.
     public float actualMovementSpeed = 8f;
     // Force applied when jumping.
-    private float jumpStrength = 8f;
+    [SerializeField] private float jumpStrength = 8f;
     // Maximum vertical jump velocity.
-    private float maxJumpVelocity = 10f;
+    [SerializeField] private float maxJumpVelocity = 10f;
 
     [Header("UI Settings -> Inventory")]
     [Space(16)]

@@ -104,11 +104,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-<<<<<<< HEAD
-    - _Rotation: 3.575613
-=======
-    - _Rotation: 2.8253021
->>>>>>> StoryPartOne
+    - _Rotation: 19.03778
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
