@@ -83,145 +83,145 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: BodenSciFi_DefaultMaterial_BaseColor
-    second: {fileID: 2800000, guid: fbffe2435ead0614294ad7c4384ea355, type: 3}
+    second: {fileID: 2800000, guid: a4a5415ed69992c46bd702a01956bb24, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: BodenSciFi_DefaultMaterial_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: cae9be923e32b4d4eabca3590220d3ef, type: 3}
+    second: {fileID: 2800000, guid: 08259721dfcec944a96685753a6d0c31, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Dachteil1_DefaultMaterial_BaseColor
-    second: {fileID: 2800000, guid: 1647ac70a5650854392942f3b3203cf2, type: 3}
+    second: {fileID: 2800000, guid: e8e046ccb6f8e9d4fa0c4df364001316, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Dachteil1_DefaultMaterial_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: f8524378427417647b853e9a56d35719, type: 3}
+    second: {fileID: 2800000, guid: 38af3d05a176998419c1f2ccc65912c0, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Dachteil2_DefaultMaterial_BaseColor
-    second: {fileID: 2800000, guid: 567f9a5e910c37e49a367ffa56de2517, type: 3}
+    second: {fileID: 2800000, guid: ff9ab20993665f842a27c4b21ec7d793, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Dachteil2_DefaultMaterial_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: bd55d62283326a04fa054e0c18504c17, type: 3}
+    second: {fileID: 2800000, guid: 59b9f8af21c03b041b5dae7d591a0a4d, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Dachteil3_DefaultMaterial_BaseColor
-    second: {fileID: 2800000, guid: 30f20b2876f961a4cb25837437932436, type: 3}
+    second: {fileID: 2800000, guid: 725dfa26ff4cab24bb0dc1ddaa491462, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: HabitatRaum_DefaultMaterial_BaseColor
-    second: {fileID: 2800000, guid: 9be22c897509ae346ab85c06b22f71c3, type: 3}
+    second: {fileID: 2800000, guid: 5c655788645a42448845dd564b3a41d3, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: HabitatRaum_DefaultMaterial_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: e741c69362eb01c4c9fa2f018ff910b2, type: 3}
+    second: {fileID: 2800000, guid: b499bb24575f1de4fad7e253e021fe0d, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_ BodyInsekt_BaseColor
-    second: {fileID: 2800000, guid: 94dcd230772baf840890555bc934c2b4, type: 3}
+    second: {fileID: 2800000, guid: e4088a7c1ee7c3e4bb2f8d1c562b12fa, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_ BodyInsekt_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: da9530a41aa95b84a80e66153bf4a094, type: 3}
+    second: {fileID: 2800000, guid: b96fb904dc901aa4db4843814aff49d0, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Antenna1_BaseColor
-    second: {fileID: 2800000, guid: a7134e3c3d59a34429ab37be44d3b305, type: 3}
+    second: {fileID: 2800000, guid: b7539c7b3d10cd747ab8ae1cff00a386, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Antenna2_BaseColor
-    second: {fileID: 2800000, guid: 114acf54933235f4e9eb8556372d4d5f, type: 3}
+    second: {fileID: 2800000, guid: 42de327dd81f1e64ba3df818dc4bd2d6, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Antenna2_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: 8f976eae660dfc149a6f7bc71bb96f8a, type: 3}
+    second: {fileID: 2800000, guid: e9ff860ded4a9ca4b829101361f297bd, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Auge1_BaseColor
-    second: {fileID: 2800000, guid: 7e6910980042f7b4383dc3784b63cc06, type: 3}
+    second: {fileID: 2800000, guid: 299c1e84d84da3c4d8067b00e9524ad2, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Auge1_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: c11976776263e0a47bbb6f3eeeb808a7, type: 3}
+    second: {fileID: 2800000, guid: 2dd291dd2cb961f49b6e44fa82c2ef7f, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Auge2_BaseColor
-    second: {fileID: 2800000, guid: 586d57a7b1e9c4f41a196b90f380dfa6, type: 3}
+    second: {fileID: 2800000, guid: 187a2971dde09f240baa72e3221e7d89, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Auge2_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: c78c249ce6f29de42b03ea9276fc4339, type: 3}
+    second: {fileID: 2800000, guid: b78f9b8be62273248852f71c90ea2d91, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Foot_BaseColor
-    second: {fileID: 2800000, guid: adebf519625a52c439cb5287d3610847, type: 3}
+    second: {fileID: 2800000, guid: cf7f1640a2466aa49ab60faf8e6d72f3, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Foot_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: ddc3a21924cb4c244b0c2e8669cdce6e, type: 3}
+    second: {fileID: 2800000, guid: e6075533263453a4a804b8078220c95a, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Wings_BaseColor
-    second: {fileID: 2800000, guid: c6638e60eb14d564b89f1c38bc2a38b6, type: 3}
+    second: {fileID: 2800000, guid: 8f4c616c4466670428f018d2314c13e7, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: InsektohneTexture_Wings_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: 3fede8072a021fc42b5c85dec46bffe2, type: 3}
+    second: {fileID: 2800000, guid: cee528510002e6541bc61272d629818c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: "T\xFCrSciFi_DefaultMaterial_BaseColor"
-    second: {fileID: 2800000, guid: 901fa1db53c738a4493c238b4f17a98d, type: 3}
+    second: {fileID: 2800000, guid: 34a167158d0a8c44692029ef89b92c3f, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: "T\xFCrSciFi_DefaultMaterial_Normal_DirectX_OpenGl"
-    second: {fileID: 2800000, guid: 3328b6da20a045e449bad0cfbf698a1a, type: 3}
+    second: {fileID: 2800000, guid: fca73aff871fc224a861d6947d63692e, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Wandteil1_Scifi_Wand_BaseColor
-    second: {fileID: 2800000, guid: 352bac0c39c8b1045a3790761bc45153, type: 3}
+    second: {fileID: 2800000, guid: c31517f718f6e624cb0d1f67b53c9ac0, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Wandteil1_Scifi_Wand_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: 4e6acfe840e8e144d82c795a54937706, type: 3}
+    second: {fileID: 2800000, guid: 690822baf36804b409fcc0258b46302e, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Wandteil2_DefaultMaterial_BaseColor
-    second: {fileID: 2800000, guid: a991807a0370b2548a0861e3c99ccd9e, type: 3}
+    second: {fileID: 2800000, guid: c378b9cdac37bd445b82bf9747c2be72, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Wandteil2_DefaultMaterial_Normal_DirectX_OpenGl
-    second: {fileID: 2800000, guid: e060666c2e428e5438efe8dcfef8dc45, type: 3}
+    second: {fileID: 2800000, guid: 2c43f4fb0bcd6ae4a922ffd132c7ebc3, type: 3}
   materials:
     materialImportMode: 2
-    materialName: 1
+    materialName: 0
     materialSearch: 1
     materialLocation: 1
   animations:
