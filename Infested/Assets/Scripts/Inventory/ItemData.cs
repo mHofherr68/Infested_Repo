@@ -16,5 +16,5 @@ public class ItemData : ScriptableObject
     public int itemID;
 
     // Item value
-    public float itemValue;    
+    public float itemValue;
 }

@@ -3,7 +3,32 @@ guid: 0868fed67ede0c14f9fd462492aaf728
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sicherung
+    second: {fileID: 2100000, guid: 4c4a969ed20e7c442a59d716d7ef412f, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sicherung_Sicherung_BaseColor
+    second: {fileID: 2800000, guid: fa2a67eb40a03e14ea84aa3903f8fef5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sicherung_Sicherung_Emissive
+    second: {fileID: 2800000, guid: b71c350c154d3ba43b106245353113f9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sicherung_Sicherung_Metallic
+    second: {fileID: 2800000, guid: 83b1885b619ab844fa05bf2c2b6758e5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sicherung_Sicherung_Normal
+    second: {fileID: 2800000, guid: c51bad399bf6ca94bb978afa6aee452a, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
