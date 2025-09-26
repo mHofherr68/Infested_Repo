@@ -48,6 +48,11 @@ public class BaseCharacterController : MonoBehaviour
     // Which layers are considered as walls.
     [SerializeField] private LayerMask wallLayer;
 
+    [Header("Select Item At Player")]
+    [Space(16)]
+    // Reference to an selected item the player is using (e.g. Flashlight)
+    public GameObject ItemAtPlayer;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
