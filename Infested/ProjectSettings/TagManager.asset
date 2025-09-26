@@ -6,8 +6,7 @@ TagManager:
   tags:
   - Item
   - Projectile
-  - Ground
-  - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +17,7 @@ TagManager:
   - UI
   - Ground Layer
   - Player
-  - 
+  - Wall Layer
   - 
   - 
   - 
