@@ -76,7 +76,7 @@ public class BaseCharacterController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
-        healthBarManager = GameObject.Find("UI_Canvas/UI/HelmetUIElements/HealthBarCircular").GetComponent<HealthBarManager>();
+        //healthBarManager = GameObject.Find("UI_Canvas/UI/HelmetUIElements/HealthBarCircular").GetComponent<HealthBarManager>();
 
         // Subscribe to input action callbacks
         playerInput.actions["Move"].performed += onMove;
