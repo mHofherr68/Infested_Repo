@@ -18,6 +18,7 @@ public class BaseCharacterController : MonoBehaviour
     // Current movement input vector (X = horizontal, Y = vertical).
     [HideInInspector] public Vector2 movementInput;
 
+    // Reference to the main camera's transform for movement direction.
     private Transform cameraTransform;
 
     [Header("Player Movement Settings")]
@@ -38,17 +39,14 @@ public class BaseCharacterController : MonoBehaviour
     [Header("Player Ground Detection")]
     [Space(16)]
     // True if the player is standing on the ground.
-
-
-    // Flag to check, if the player is currently grounded
-
     public bool isGrounded;
     // Distance for the ground detection ray.
     [SerializeField] private float raycastDistance;
     // Which layers are considered as ground.
     [SerializeField] private LayerMask groundLayer;
-    
 
+    [Header("UI Settings")]
+    [Space(16)]
     // Reference to the HealthBar script for managing player health
     [SerializeField] private HealthBarManager healthBarManager;
     // Recoil force applied to the player when taking damage
@@ -56,13 +54,10 @@ public class BaseCharacterController : MonoBehaviour
     // Flag to prevent multiple damage instances from a single collision
     private bool hasTakenDamage = false;
 
-
     // Reference to the UI inventory panel
     //[SerializeField] private GameObject inventoryPanel; 
     //[SerializeField] private OxygenManager oxygenManager;
     //[SerializeField] private AmmoManager ammomanager;
-
-
 
     [Header("Collision Stop Settings")]
     [Space(16)]
@@ -70,6 +65,7 @@ public class BaseCharacterController : MonoBehaviour
     [SerializeField] private float collisionCheckDistance = 0.5f;
     // Which layers are considered as walls.
     [SerializeField] private LayerMask wallLayer;
+
 
     private void Awake()
     {
@@ -80,7 +76,7 @@ public class BaseCharacterController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
-        healthBarManager = GameObject.Find("Player/PlayerCam/UICanvas/HealthBarCircular").GetComponent<HealthBarManager>();
+        healthBarManager = GameObject.Find("UI_Canvas/UI/HelmetUIElements/HealthBarCircular").GetComponent<HealthBarManager>();
 
         // Subscribe to input action callbacks
         playerInput.actions["Move"].performed += onMove;
@@ -110,21 +106,24 @@ public class BaseCharacterController : MonoBehaviour
     /// </summary>
     public void onJump(CallbackContext ctx)
     {
+        if (!ctx.performed) return;
+        if (inputLocked) return;
+
         if (isGrounded)
         {
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
-        }
-            
-        // Clamp jump velocity to avoid excessive upward force
-        Vector3 vel = rb.linearVelocity;
-        if (vel.y > maxJumpVelocity)
-        {
-            vel.y = maxJumpVelocity;
-            rb.linearVelocity = vel;
+        
+            // Clamp jump velocity to avoid excessive upward force
+            Vector3 vel = rb.linearVelocity;
+            if (vel.y > maxJumpVelocity)
+            {
+                vel.y = maxJumpVelocity;
+                rb.linearVelocity = vel;
+            }
         }
     }
 
-  
+    // Method to determine what happens when player enters collision with another object
     private void OnCollisionEnter(Collision collision)
     {   // Check if the player collides with an enemy
         if (collision.gameObject.CompareTag("Enemy") && !hasTakenDamage)
@@ -143,6 +142,7 @@ public class BaseCharacterController : MonoBehaviour
         }
     }
 
+    // Method to determine what happens when player exits collision with another object
     private void OnCollisionExit(Collision collision)
     {   // Reset the damage flag when the player exits collision with an enemy
         if (collision.gameObject.CompareTag("Enemy"))
@@ -192,9 +192,9 @@ public class BaseCharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // if (inputLocked) movementInput = Vector2.zero;
+        if (inputLocked) movementInput = Vector2.zero;
 
-        if (cameraTransform = null)
+        if (cameraTransform == null)
         {
             cameraTransform = Camera.main.transform;
         }
