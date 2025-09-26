@@ -54,8 +54,6 @@ public class BaseCharacterController : MonoBehaviour
     // Flag to prevent multiple damage instances from a single collision
     private bool hasTakenDamage = false;
 
-    // Reference to the UI inventory panel
-    //[SerializeField] private GameObject inventoryPanel; 
     //[SerializeField] private OxygenManager oxygenManager;
     //[SerializeField] private AmmoManager ammomanager;
 

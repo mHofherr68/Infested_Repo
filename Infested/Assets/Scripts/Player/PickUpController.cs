@@ -3,15 +3,18 @@ using UnityEngine.InputSystem;
 
 public class PickUpController : MonoBehaviour
 {
-    
     // Reference to the PlayerInput component
     private PlayerInput playerInput;  
     
     // Reference to the player's inventory
     private Inventory inventory;
 
-    // Holds the selected item at Player, (e.g., flashlight, Weapon) when is picked up
-    // public GameObject selectPlayerItem; 
+    [Header("Item at Player settings")]
+
+    [Space(16)]
+
+    // Select item at Player, (e.g., flashlight, Weapon) when is picked up.
+    public GameObject selectItem; 
     
     [Header("UI Text Settings")]
 
@@ -51,10 +54,10 @@ public class PickUpController : MonoBehaviour
                 inventory.AddItem(item.data);
 
                 // If the item is a Weapon, activate the player Weapon object
-               /* if (item.data.itemName == "Flashlight")
+                if (item.data.itemName == "Spraygun")
                 {
-                    selectPlayerItem.SetActive(true);
-                } */
+                    selectItem.SetActive(true);
+                } 
 
                 // Hide the interaction UI Panel
                 selectUiText.SetActive(false);
